@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schemas List</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    .schema-card { border: 1px solid #ccc; border-radius: 6px; margin: 1em 0; padding: 1em; background: #fafafa; }
+    .schema-card pre { background: #f4f4f4; padding: 0.5em; border-radius: 4px; }
+    .schema-title { font-weight: bold; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Available Schemas</h1>
+  <div id="schemas"></div>
+  <script>
+    const repo = 'sahar-cohen1/example_schema_registry'; 
+    const branch = 'master';
+    const apiBase = `https://api.github.com/repos/${repo}/contents/schemas?ref=${branch}`;
+
+    async function fetchSchemasList() {
+      const res = await fetch(apiBase);
+      if (!res.ok) return [];
+      return res.json();
+    }
+
+    async function fetchSchemaRaw(url) {
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      return res.json();
+    }
+
+    async function renderSchemas() {
+      const container = document.getElementById('schemas');
+      const files = await fetchSchemasList();
+      if (!Array.isArray(files) || files.length === 0) {
+        container.innerHTML = '<p>No schemas found.</p>';
+        return;
+      }
+      for (const file of files) {
+        if (!file.name.endsWith('.json')) continue;
+        const schema = await fetchSchemaRaw(file.download_url);
+        const card = document.createElement('div');
+        card.className = 'schema-card';
+        card.innerHTML = `
+          <div class="schema-title">${schema.schema_name || file.name}</div>
+          <div>Version: ${schema.version || ''} | Type: ${schema.schema_type || ''} | Approved: ${schema.approved ? '✅' : '❌'}</div>
+          <div>Created: ${schema.created_at || ''} | Updated: ${schema.updated_at || ''}</div>
+          <pre>${JSON.stringify(JSON.parse(schema.schema), null, 2)}</pre>
+        `;
+        container.appendChild(card);
+      }
+    }
+    renderSchemas();
+  </script>
+</body>
+</html> 
