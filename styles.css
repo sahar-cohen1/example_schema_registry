@@ -1,0 +1,54 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.schema-list {
+  margin-top: 20px;
+}
+
+.schema-card {
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.schema-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.schema-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+pre {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 15px;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.navbar {
+  margin-bottom: 30px;
+}
+
+#detail-schema {
+  background-color: #282c34;
+  color: #abb2bf;
+  border-radius: 6px;
+  padding: 15px;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 5px 8px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+} 

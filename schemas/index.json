@@ -1,0 +1,20 @@
+[
+  {
+    "schema_name": "user",
+    "version": 1,
+    "schema_type": "JSON Schema",
+    "approved": true,
+    "created_at": "2023-06-15T10:30:00Z",
+    "updated_at": "2023-06-15T10:30:00Z",
+    "path": "/schemas/user-v1.json"
+  },
+  {
+    "schema_name": "product",
+    "version": 1,
+    "schema_type": "JSON Schema",
+    "approved": false,
+    "created_at": "2023-07-20T14:45:00Z",
+    "updated_at": "2023-07-20T14:45:00Z",
+    "path": "/schemas/product-v1.json"
+  }
+] 

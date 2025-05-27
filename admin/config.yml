@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "schemas"
+    label: "Schemas"
+    folder: "schemas"
+    create: true
+    slug: "{{schema_name}}-v{{version}}"
+    format: "json"
+    extension: "json"
+    fields:
+      - {label: "Schema Name", name: "schema_name", widget: "string"}
+      - {label: "Version", name: "version", widget: "number", default: 1}
+      - {label: "Schema Type", name: "schema_type", widget: "string"}
+      - {label: "Schema Definition", name: "schema", widget: "code", default_language: "json", allow_language_selection: false}
+      - {label: "Approved", name: "approved", widget: "boolean", default: false}
+      - {label: "Created At", name: "created_at", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ"}
+      - {label: "Updated At", name: "updated_at", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ"} 

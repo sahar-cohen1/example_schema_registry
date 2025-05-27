@@ -1,0 +1,25 @@
+[build]
+  publish = "./"
+  command = "echo 'No build command required'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "default-src 'self' https://identity.netlify.com https://unpkg.com; script-src 'self' 'unsafe-inline' https://identity.netlify.com https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://identity.netlify.com;"
+
+# Redirect rules to handle SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+[dev]
+  command = "echo 'No development command required'"
+  port = 8888
+  publish = "./"
+  
+# Enable Git Gateway for content management
+[template.environment]
+  NETLIFY_IDENTITY_ENABLED = "true" 
