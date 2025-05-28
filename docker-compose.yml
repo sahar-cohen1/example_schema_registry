@@ -1,14 +1,36 @@
 version: "3.8"
 services:
+  proxy:
+    image: node:20-alpine
+    working_dir: /app
+    env_file:
+      - .env
+    entrypoint:
+      - sh
+      - -c
+      - |
+        # install the proxy server, then launch in GitHub-OAuth mode
+        npm install -g netlify-cms-proxy-server && \
+        netlify-cms-proxy-server \
+          --authType github \
+          --repo $PROXY_REPO \
+          --branch $PROXY_BRANCH \
+          --port $PROXY_PORT \
+          --clientId $GITHUB_CLIENT_ID \
+          --clientSecret $GITHUB_CLIENT_SECRET
+    ports:
+      - "${PROXY_PORT}:${PROXY_PORT}"
+
   ui:
-    image: nginx:alpine
+    image: nginx:1.24-alpine
+    depends_on:
+      - proxy
     volumes:
       - ./admin:/usr/share/nginx/html/admin
       - ./schemas:/usr/share/nginx/html/schemas
       - ./admin/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8080:80"
-    restart: unless-stopped
+      - "8080:80"          # UI at host:8080
 
   api:
     image: node:20-alpine
@@ -16,10 +38,8 @@ services:
     volumes:
       - ./api:/app
     command: sh -c "npm install && node server.js"
-    environment:
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - GITHUB_REPO=sahar-cohen1/example_schema_registry
-      - GITHUB_BRANCH=master
+    env_file:
+      - .env
     ports:
-      - "8081:3000"
-    restart: unless-stopped 
+      - "3000:3000"        # api at host:3000
+    restart: unless-stopped

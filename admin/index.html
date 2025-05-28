@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Schema Registry CMS</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</head>
-<body>
+
+  <!-- 1) Tell Decap CMS "don’t auto init" BEFORE you load it -->
   <script>
     window.CMS_MANUAL_INIT = true;
-    window.addEventListener('DOMContentLoaded', function() {
+  </script>
+
+  <!-- 2) Load the official Decap CMS bundle from the CDN -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- 3) Once the DOM is ready, boot it yourself -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.CMS) {
+        console.error('Decap CMS did not load!');
+        return;
+      }
       window.CMS.init();
     });
   </script>
-  <h1>Schema Registry CMS</h1>
+</head>
+<body>
+  <!-- 4) This is where the CMS will inject its root element -->
   <div id="nc-root"></div>
 </body>
-</html> 
+</html>

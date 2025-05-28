@@ -1,9 +1,14 @@
-# NOTE: repo and branch values must match those in your .env file at project root.
-# There is no dynamic import in YAML; update both places if you change repo/branch.
 backend:
-  name: github
-  repo: sahar-cohen1/example_schema_registry
+  # name: github
+  # repo: sahar-cohen1/example_schema_registry
+  # branch: master
+  # base_url: https://growing-optical-rhode-comm.trycloudflare.com
+  # # auth_endpoint: /api/auth
+  # auth_endpoint: /admin/auth
+  # api_root:       /admin/api/v1
+  name: git-gateway
   branch: master
+
 
 media_folder: "schemas"
 public_folder: "/schemas"
@@ -22,4 +27,4 @@ collections:
       - {label: "Approved", name: "approved", widget: "boolean", default: false}
       - {label: "Created At", name: "created_at", widget: "datetime"}
       - {label: "Updated At", name: "updated_at", widget: "datetime"}
-      - {label: "Schema Definition", name: "schema", widget: "code", default_language: "json"} 
+      - {label: "Schema Definition", name: "schema", widget: "code", default_language: "json"}
