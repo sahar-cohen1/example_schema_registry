@@ -1,0 +1,15 @@
+{
+    "name": "keystatic-schema-editor",
+    "type": "module",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build"
+    },
+    "dependencies": {
+        "@astrojs/markdoc": "^0.11.3",
+        "@astrojs/react": "^3.6.3",
+        "@keystatic/astro": "^5.0.0",
+        "@keystatic/core": "^0.5.32",
+        "astro": "^4.15.9"
+    }
+}

@@ -1,0 +1,105 @@
+---
+// src/pages/index.astro
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema Registry</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .nav-link {
+            padding: 1rem 2rem;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: #0052a3;
+        }
+        
+        .admin-link {
+            background: #dc2626;
+        }
+        
+        .admin-link:hover {
+            background: #b91c1c;
+        }
+        
+        .description {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .status {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Schema Registry</h1>
+        <p>Manage and organize your data schemas</p>
+    </div>
+    
+    <div class="status">
+        ✅ Schema Registry is running
+    </div>
+    
+    <div class="nav-links">
+        <a href="/keystatic" class="nav-link admin-link">
+            Admin Panel →
+        </a>
+        <a href="/schemas" class="nav-link">
+            View Schemas →
+        </a>
+    </div>
+    
+    <div class="description">
+        <h2>Welcome to Schema Registry</h2>
+        <p>
+            This is your central hub for managing data schemas. Use the Admin Panel to create, 
+            edit, and organize your schemas, or browse existing schemas in the public view.
+        </p>
+        
+        <h3>Quick Actions:</h3>
+        <ul>
+            <li><strong>Admin Panel:</strong> Access the full content management interface</li>
+            <li><strong>View Schemas:</strong> Browse all published schemas</li>
+        </ul>
+    </div>
+</body>
+</html>

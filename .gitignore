@@ -1,2 +1,4 @@
 .env
 identity.json
+keystatic_schema_editor/node_modules
+admin/api/node_modules

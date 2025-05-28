@@ -1,14 +1,11 @@
+# admin/config.yml
 backend:
-  # name: github
-  # repo: sahar-cohen1/example_schema_registry
-  # branch: master
-  # base_url: https://growing-optical-rhode-comm.trycloudflare.com
-  # # auth_endpoint: /api/auth
-  # auth_endpoint: /admin/auth
-  # api_root:       /admin/api/v1
-  name: git-gateway
+  name: github
+  repo: sahar-cohen1/example_schema_registry
   branch: master
-
+  base_url: https://growing-optical-rhode-comm.trycloudflare.com
+  auth_endpoint: /admin/auth
+  api_root: /admin/api/v1
 
 media_folder: "schemas"
 public_folder: "/schemas"

@@ -1,0 +1,172 @@
+---
+// src/pages/schemas/index.astro
+import { createReader } from '@keystatic/core/reader'
+import config from '../../../keystatic.config'
+
+const reader = createReader(process.cwd(), config)
+
+let schemas = []
+try {
+  const schemasList = await reader.collections.schemas.all()
+  schemas = schemasList.map(schema => ({
+    slug: schema.slug,
+    ...schema.entry
+  }))
+} catch (error) {
+  console.log('No schemas found or error reading schemas:', error.message)
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Schemas - Schema Registry</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .back-link {
+            background: #6b7280;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover {
+            background: #4b5563;
+        }
+        
+        .schemas-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        .schema-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s;
+        }
+        
+        .schema-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .schema-title {
+            margin: 0 0 0.5rem 0;
+            color: #1f2937;
+        }
+        
+        .schema-version {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .schema-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .schema-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+        
+        .empty-state h2 {
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        
+        .create-link {
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .create-link:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>All Schemas</h1>
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+    
+    {schemas.length === 0 ? (
+        <div class="empty-state">
+            <h2>No schemas found</h2>
+            <p>Get started by creating your first schema in the admin panel.</p>
+            <a href="/keystatic" class="create-link">Create Schema</a>
+        </div>
+    ) : (
+        <div class="schemas-grid">
+            {schemas.map(schema => (
+                <div class="schema-card" key={schema.slug}>
+                    <h3 class="schema-title">{schema.title}</h3>
+                    {schema.version && (
+                        <div class="schema-version">v{schema.version}</div>
+                    )}
+                    {schema.description && (
+                        <p class="schema-description">{schema.description}</p>
+                    )}
+                    {schema.tags && schema.tags.length > 0 && (
+                        <div class="schema-tags">
+                            {schema.tags.map((tag, index) => (
+                                <span class="tag" key={index}>{tag}</span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </div>
+    )}
+</body>
+</html>
