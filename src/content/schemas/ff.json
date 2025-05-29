@@ -5,7 +5,7 @@
   "tags": [
     "asdf"
   ],
-  "jsonSchema": "{\n  \"schema_name\": \"example-schema-2\",\n  \"version\": 1,\n  \"schema_type\": \"json-schema\",\n  \"approved\": false,\n  \"created_at\": \"2024-01-01T00:00:00Z\",\n  \"updated_at\": \"2024-01-01T00:00:00Z\",\n  \"schema\": \"{ \\\"type\\\": \\\"object\\\" }\"\n} ",
+  "jsonSchema": "{\n  \"schema_name\": \"example-schema-3\",\n  \"version\": 1,\n  \"schema_type\": \"json-schema\",\n  \"approved\": false,\n  \"created_at\": \"2024-01-01T00:00:00Z\",\n  \"updated_at\": \"2024-01-01T00:00:00Z\",\n  \"schema\": \"{ \\\"type\\\": \\\"object\\\" }\"\n} ",
   "createdAt": "2025-05-29",
   "updatedAt": "2025-05-29"
 }
