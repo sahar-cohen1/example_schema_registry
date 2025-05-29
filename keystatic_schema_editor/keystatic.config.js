@@ -15,8 +15,8 @@ export default config({
     schemas: collection({
       label: 'Schemas',
       slugField: 'title',
-      path: 'src/content/schemas/{slug}.json',
-      format: {  data: 'json'},
+      path: 'src/content/schemas/*',
+      format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({
