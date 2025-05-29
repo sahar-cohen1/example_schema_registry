@@ -4,6 +4,7 @@ export default config({
   storage: {
     kind: 'github',
     repo: 'sahar-cohen1/example_schema_registry',
+    mode: 'pull-request',
   },
   ui: {
     brand: {
@@ -14,8 +15,8 @@ export default config({
     schemas: collection({
       label: 'Schemas',
       slugField: 'title',
-      path: 'src/content/schemas/*',
-      format: { contentField: 'content' },
+      path: 'src/content/schemas/{slug}.json',
+      format: {  data: 'json'},
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({
